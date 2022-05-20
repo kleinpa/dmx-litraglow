@@ -27,3 +27,30 @@ http_archive(
     strip_prefix = "abseil-cpp-b9b925341f9e90f5e7aa0cf23f036c29c7e454eb",
     urls = ["https://github.com/abseil/abseil-cpp/archive/b9b925341f9e90f5e7aa0cf23f036c29c7e454eb.zip"],
 )
+
+http_archive(
+    name = "com_github_etclabs_etcpal",
+    build_file = "@//external:etcpal-BUILD.bazel",
+    sha256 = "e94d0f492a142ee998acf64e84c1cd17cefb962c0ac389a8083232ad13f2c77b",
+    strip_prefix = "EtcPal-eb5f906aafdbc6a4cd3e00670bbd2824e34705cd",
+    urls = ["https://github.com/ETCLabs/etcpal/archive/eb5f906aafdbc6a4cd3e00670bbd2824e34705cd.zip"],
+)
+
+http_archive(
+    name = "com_github_etclabs_sacn",
+    build_file = "@//external:sacn-BUILD.bazel",
+    sha256 = "baee0ec371bd435f85e5717f8a6762270202872e77ffc788b5692c3110d53196",
+    strip_prefix = "sACN-af246e04106f2342937566097322ac1ebb86fae0",
+    urls = ["https://github.com/ETCLabs/sACN/archive/af246e04106f2342937566097322ac1ebb86fae0.zip"],
+)
+
+http_archive(
+    name = "com_github_jupp0r_prometheus_cpp",
+    sha256 = "4b4241542a0ee807a2e351600c342b915ea02fac5ccb2235d4794812f46b50b6",
+    strip_prefix = "prometheus-cpp-722fbcf18695976b23f81d1e852b8fdb4690cfd9",
+    urls = ["https://github.com/jupp0r/prometheus-cpp/archive/722fbcf18695976b23f81d1e852b8fdb4690cfd9.zip"],
+)
+
+load("@com_github_jupp0r_prometheus_cpp//bazel:repositories.bzl", "prometheus_cpp_repositories")
+
+prometheus_cpp_repositories()
