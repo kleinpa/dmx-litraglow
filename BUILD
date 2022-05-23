@@ -2,7 +2,11 @@ load("@rules_cc//cc:defs.bzl", "cc_binary")
 
 cc_binary(
     name = "basic",
-    srcs = ["basic.cc"],
+    srcs = [
+        "basic.cc",
+        "device.cc",
+        "device.h",
+    ],
     deps = [
         "@com_github_libusb_hidapi//:hidapi",
         "@com_google_absl//absl/flags:flag",
@@ -11,11 +15,13 @@ cc_binary(
 )
 
 cc_binary(
-    name = "dmx",
+    name = "main",
     srcs = [
         "device.cc",
         "device.h",
-        "dmx.cc",
+        "dmx_server.cc",
+        "dmx_server.h",
+        "main.cc",
     ],
     deps = [
         "@com_github_etclabs_sacn//:sacn_cpp",

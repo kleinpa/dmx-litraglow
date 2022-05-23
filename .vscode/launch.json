@@ -9,7 +9,7 @@
       "type": "cppvsdbg",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/bazel-bin/dmx.exe"
+      "program": "${workspaceFolder}/bazel-bin/main.exe"
     }
   ]
 }
