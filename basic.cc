@@ -9,7 +9,6 @@
 #include "absl/flags/parse.h"
 #include "device.h"
 
-
 ABSL_FLAG(bool, power, true, "on/off");
 ABSL_FLAG(int, brightness, 245, "brightness 20 - 250");
 ABSL_FLAG(int, color, 6500, "color temperature 2700 - 6500");
@@ -18,9 +17,9 @@ int main(int argc, char *argv[]) {
   absl::ParseCommandLine(argc, argv);
 
   try {
-    HidDeviceManager device_manager;
+    dmxlitraglow::HidDeviceManager device_manager;
 
-    device_manager.for_each([](const LitraGlowDevice &handle) {
+    device_manager.for_each([](const dmxlitraglow::LitraGlowDevice &handle) {
       handle.send_power(absl::GetFlag(FLAGS_power));
       handle.send_color(absl::GetFlag(FLAGS_color));
       handle.send_brightness(absl::GetFlag(FLAGS_brightness));

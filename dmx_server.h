@@ -1,5 +1,5 @@
-#ifndef SERVER_H_
-#define SERVER_H_
+#ifndef DMX_SERVER_H_
+#define DMX_SERVER_H_
 
 #include <functional>
 #include <mutex>
@@ -8,6 +8,8 @@
 #include "sacn/common.h"
 #include "sacn/cpp/common.h"
 #include "sacn/cpp/merge_receiver.h"
+
+namespace dmxlitraglow {
 
 // DmxServer listens to incoming DMX data and calls the provided callback
 // when that data changes. It also handles the lifecycle of the sacn library.
@@ -49,4 +51,5 @@ class DmxServer {
   sacn::MergeReceiver merge_receiver_;
   CallbackNotifyHandler sacn_handler_;
 };
-#endif  // SERVER_H_
+}  // namespace dmxlitraglow
+#endif  // DMX_SERVER_H_

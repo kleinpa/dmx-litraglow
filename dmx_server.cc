@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+namespace dmxlitraglow {
+
 DmxServer::DmxServer(int channel, DmxCallback callback)
     : sacn_handler_(callback) {
   sacn::Init();
@@ -25,3 +27,5 @@ void DmxServer::CallbackNotifyHandler::HandleMergedData(
   }
   callback_(dmx_data_);
 }
+
+}  // namespace dmxlitraglow

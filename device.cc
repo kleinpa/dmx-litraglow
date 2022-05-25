@@ -6,6 +6,8 @@
 #include <iostream>
 #include <stdexcept>
 
+namespace dmxlitraglow {
+
 constexpr uint16_t litraglow_vid = 0x046D;
 constexpr uint16_t litraglow_pid = 0xC900;
 constexpr uint16_t litraglow_usagepage = 0xff43;
@@ -73,3 +75,5 @@ void HidDeviceManager::scan() {
   }
   hid_free_enumeration(devs);
 }
+
+}  // namespace dmxlitraglow

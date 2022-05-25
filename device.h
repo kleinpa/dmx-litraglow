@@ -8,6 +8,8 @@
 #include <mutex>
 #include <vector>
 
+namespace dmxlitraglow {
+
 class LitraGlowDevice {
  public:
   LitraGlowDevice(hid_device* handle) : handle_(handle) {}
@@ -43,4 +45,5 @@ class HidDeviceManager {
   std::mutex handles_mu_;
 };
 
+}  // namespace dmxlitraglow
 #endif  // DEVICE_H_

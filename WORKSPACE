@@ -54,3 +54,22 @@ http_archive(
 load("@com_github_jupp0r_prometheus_cpp//bazel:repositories.bzl", "prometheus_cpp_repositories")
 
 prometheus_cpp_repositories()
+
+http_archive(
+    name = "rules_wix",
+    sha256 = "33a8487079f494125cc5ae8e6d4df068870ad680dd8cf1b225492c9954761f9b",
+    strip_prefix = "rules_wix-07d3331f38ff3152384cc8c6c5e844e9d2dd50fe",
+    url = "https://github.com/kleinpa/rules_wix/archive/07d3331f38ff3152384cc8c6c5e844e9d2dd50fe.zip",
+)
+
+load("@rules_wix//:deps.bzl", "add_wix_deps")
+
+add_wix_deps()
+
+http_archive(
+    name = "org_kernel_util_linux",  # for libuuid
+    build_file = "@//external:util-linux-BUILD.bazel",
+    sha256 = "faa8b46d080faa6f32c57da81eda871e38e1e27ba4e9b61cb2589334671aba50",
+    strip_prefix = "util-linux-2.37",
+    urls = ["https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.37/util-linux-2.37.tar.gz"],
+)
