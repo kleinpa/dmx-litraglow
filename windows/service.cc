@@ -1,4 +1,7 @@
 #include <Windows.h>
+#include <prometheus/counter.h>
+#include <prometheus/exposer.h>
+#include <prometheus/registry.h>
 #include <tchar.h>
 
 #include <atomic>
@@ -13,6 +16,8 @@
 
 ABSL_FLAG(int, dmx_universe, 1, "DMX universe");
 ABSL_FLAG(int, dmx_address_start, 1, "First DMX address to use");
+ABSL_FLAG(std::string, metrics_address, "[::1]:20309",
+          "Metrics HTTP endpoint bind address");
 
 SERVICE_STATUS_HANDLE status_handle = nullptr;
 
@@ -56,6 +61,11 @@ VOID WINAPI service_control_handler(const DWORD code) {
 VOID WINAPI service_main(DWORD argc, LPTSTR *argv) {
   absl::ParseCommandLine(argc, argv);
 
+  // Configure metrics
+  prometheus::Exposer exposer{absl::GetFlag(FLAGS_metrics_address)};
+  auto registry = std::make_shared<prometheus::Registry>();
+  exposer.RegisterCollectable(registry);
+
   status_handle =
       RegisterServiceCtrlHandler(SERVICE_NAME, service_control_handler);
   if (status_handle == nullptr) {
@@ -65,7 +75,7 @@ VOID WINAPI service_main(DWORD argc, LPTSTR *argv) {
   report_service_status(status_handle, SERVICE_RUNNING, NO_ERROR);
 
   dmxlitraglow::run(canceled, absl::GetFlag(FLAGS_dmx_universe),
-                    absl::GetFlag(FLAGS_dmx_address_start));
+                    absl::GetFlag(FLAGS_dmx_address_start), *registry);
 
   report_service_status(status_handle, SERVICE_STOPPED, NO_ERROR);
 }

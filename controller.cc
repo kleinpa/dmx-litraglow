@@ -15,6 +15,7 @@
 #include "device.h"
 #include "dmx_server.h"
 
+
 namespace dmxlitraglow {
 
 constexpr uint8_t kControlModeDisabled = 0;
@@ -41,48 +42,43 @@ struct LightControl {
 };
 
 int run(std::atomic<bool> &canceled, const int dmx_universe,
-        const int dmx_address_start) {
+        const int dmx_address_start, prometheus::Registry &registry) {
   try {
-    // Configure metrics
-    prometheus::Exposer exposer{"0.0.0.0:5369"};
-    auto registry = std::make_shared<prometheus::Registry>();
-    auto &sacn_dmx_data_packet_family = prometheus::BuildCounter()
-                                            .Name("sacn_dmx_data_packet")
-                                            .Help("Number of observed packets")
-                                            .Register(*registry);
-    auto &sacn_dmx_data_packet_counter = sacn_dmx_data_packet_family.Add({});
-    exposer.RegisterCollectable(registry);
-
     HidDeviceManager device_manager;
 
     LightControl last_value;
-    DmxServer server(dmx_universe, [&device_manager, &last_value,
-                                    dmx_address_start](
-                                       const DmxServer::DmxArray &dmx_data) {
-      // calculate the current output and stop if it is unchanged
-      auto value = LightControl::from_dmx(dmx_data, dmx_address_start);
-      if (value == last_value) {
-        return;
-      }
-      last_value = value;
-
-      uint8_t brightness = value.brightness * UINT8_MAX;
-      uint16_t temperature = 2700 + value.temperature * (6500 - 2700);
-      device_manager.for_each([brightness,
-                               temperature](const LitraGlowDevice &handle) {
-        try {
-          if (brightness >= 20) {
-            handle.send_color(std::clamp<uint16_t>(temperature, 2700, 6500));
-            handle.send_power(true);
-            handle.send_brightness(std::clamp<uint8_t>(brightness, 20, 250));
-          } else {
-            handle.send_power(false);
+    DmxServer server(
+        dmx_universe,
+        [&device_manager, &last_value,
+         dmx_address_start](const DmxServer::DmxArray &dmx_data) {
+          // calculate the current output and stop if it is unchanged
+          auto value = LightControl::from_dmx(dmx_data, dmx_address_start);
+          if (value == last_value) {
+            return;
           }
-        } catch (const std::exception &err) {
-          std::cerr << "error: " << err.what() << std::endl;
-        }
-      });
-    });
+          last_value = value;
+
+          uint8_t brightness = value.brightness * UINT8_MAX;
+          uint16_t temperature = 2700 + value.temperature * (6500 - 2700);
+
+          device_manager.for_each(
+              [brightness, temperature](const LitraGlowDevice &handle) {
+                try {
+                  if (brightness >= 20) {
+                    handle.send_color(
+                        std::clamp<uint16_t>(temperature, 2700, 6500));
+                    handle.send_power(true);
+                    handle.send_brightness(
+                        std::clamp<uint8_t>(brightness, 20, 250));
+                  } else {
+                    handle.send_power(false);
+                  }
+                } catch (const std::exception &err) {
+                  std::cerr << "error: " << err.what() << std::endl;
+                }
+              });
+        },
+        registry);
 
     // check for new usb devices periodically
     const auto period = std::chrono::milliseconds(kRefreshDevicesPeriod);
@@ -105,6 +101,7 @@ int run(std::atomic<bool> &canceled, const int dmx_universe,
     std::cerr << "error: " << err.what() << std::endl;
     return 1;
   }
+
   return 0;
 }
 
