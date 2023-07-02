@@ -38,7 +38,7 @@ void DmxServer::CallbackNotifyHandler::HandleMergedData(
   sacn_dmx_data_packet_counter_.Increment();
   std::lock_guard<std::mutex> lock(dmx_data_mutex_);
   for (int i = 0; i < merged_data.slot_range.address_count; i++) {
-    dmx_data_[merged_data.slot_range.start_address + i] = merged_data.slots[i];
+    dmx_data_[merged_data.slot_range.start_address + i] = merged_data.levels[i];
   }
   callback_(dmx_data_);
 }

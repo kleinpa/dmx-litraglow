@@ -2,12 +2,12 @@ load("@rules_cc//cc:defs.bzl", "cc_binary")
 load("@rules_wix//:rules.bzl", "pkg_msi")
 
 alias(
-    name = "installer",
-    actual = ":installer.msi",
+    name = "windows",
+    actual = ":dmx_litraglow.msi",
 )
 
 pkg_msi(
-    name = "installer.msi",
+    name = "dmx_litraglow.msi",
     src = "installer.wxs",
     arch = "x64",
     exts = [
@@ -15,7 +15,7 @@ pkg_msi(
         "WixFirewallExtension",
     ],
     target_compatible_with = [
-        "@bazel_tools//platforms:windows",
+        "@platforms//os:windows",
     ],
     deps = [
         ":service",
@@ -27,7 +27,7 @@ cc_binary(
     srcs = ["service.cc"],
     linkopts = ["advapi32.lib"],
     target_compatible_with = [
-        "@bazel_tools//platforms:windows",
+        "@platforms//os:windows",
     ],
     deps = [
         "//:controller",

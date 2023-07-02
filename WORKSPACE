@@ -1,54 +1,55 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+# http_archive(
+#     name = "bazel_skylib",
+#     sha256 = "f7be3474d42aae265405a592bb7da8e171919d74c16f082a5457840f06054728",
+#     urls = [
+#         "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.2.1/bazel-skylib-1.2.1.tar.gz",
+#         "https://github.com/bazelbuild/bazel-skylib/releases/download/1.2.1/bazel-skylib-1.2.1.tar.gz",
+#     ],
+# )
 http_archive(
     name = "bazel_skylib",
-    sha256 = "f7be3474d42aae265405a592bb7da8e171919d74c16f082a5457840f06054728",
-    urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.2.1/bazel-skylib-1.2.1.tar.gz",
-        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.2.1/bazel-skylib-1.2.1.tar.gz",
-    ],
+    sha256 = "66ffd9315665bfaafc96b52278f57c7e2dd09f5ede279ea6d39b2be471e7e3aa",
+    urls = ["https://github.com/bazelbuild/bazel-skylib/releases/download/1.4.2/bazel-skylib-1.4.2.tar.gz"],
 )
-
-load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
-
-bazel_skylib_workspace()
 
 http_archive(
     name = "com_github_libusb_hidapi",
     build_file = "@//external:hidapi.BUILD",
-    sha256 = "1a75bccfb19801b7852284caa0de4b4c6fc3633aa81002845704e0c8ae3fc8dc",
-    strip_prefix = "hidapi-hidapi-0.11.2",
-    urls = ["https://github.com/libusb/hidapi/archive/refs/tags/hidapi-0.11.2.zip"],
+    sha256 = "68217a595ffc517e7b88e7bfedddaef0558ceb8a8937327ecc3de2016cdf8cfc",
+    strip_prefix = "hidapi-hidapi-0.14.0",
+    urls = ["https://github.com/libusb/hidapi/archive/refs/tags/hidapi-0.14.0.zip"],
 )
 
 http_archive(
     name = "com_google_absl",
-    sha256 = "bb2a0b57c92b6666e8acb00f4cbbfce6ddb87e83625fb851b0e78db581340617",
-    strip_prefix = "abseil-cpp-b9b925341f9e90f5e7aa0cf23f036c29c7e454eb",
-    urls = ["https://github.com/abseil/abseil-cpp/archive/b9b925341f9e90f5e7aa0cf23f036c29c7e454eb.zip"],
+    sha256 = "6c7b209e73667e351e78f96599ce6c395e427be5589b511a648840b64b9c3467",
+    strip_prefix = "abseil-cpp-b1fb259ef793de57c2acefeeec07a6e3286ab9bc",
+    urls = ["https://github.com/abseil/abseil-cpp/archive/b1fb259ef793de57c2acefeeec07a6e3286ab9bc.zip"],
 )
 
 http_archive(
     name = "com_github_etclabs_etcpal",
     build_file = "@//external:etcpal-BUILD.bazel",
-    sha256 = "e94d0f492a142ee998acf64e84c1cd17cefb962c0ac389a8083232ad13f2c77b",
-    strip_prefix = "EtcPal-eb5f906aafdbc6a4cd3e00670bbd2824e34705cd",
-    urls = ["https://github.com/ETCLabs/etcpal/archive/eb5f906aafdbc6a4cd3e00670bbd2824e34705cd.zip"],
+    sha256 = "066b3b5ea47a3970ca189457235becc8a178fa02b78056187fb7d0c73da35c1f",
+    strip_prefix = "EtcPal-0aa91907b93f7969e712a1af126e7af84cba3707",
+    urls = ["https://github.com/ETCLabs/etcpal/archive/0aa91907b93f7969e712a1af126e7af84cba3707.zip"],
 )
 
 http_archive(
     name = "com_github_etclabs_sacn",
     build_file = "@//external:sacn-BUILD.bazel",
-    sha256 = "baee0ec371bd435f85e5717f8a6762270202872e77ffc788b5692c3110d53196",
-    strip_prefix = "sACN-af246e04106f2342937566097322ac1ebb86fae0",
-    urls = ["https://github.com/ETCLabs/sACN/archive/af246e04106f2342937566097322ac1ebb86fae0.zip"],
+    sha256 = "5493088f402c3dbb85bd166df372e201f514f5afdd8da7b10b660b7a96cdf358",
+    strip_prefix = "sACN-4508d4b0ef70d31b438316be02cfb016401e848b",
+    urls = ["https://github.com/ETCLabs/sACN/archive/4508d4b0ef70d31b438316be02cfb016401e848b.zip"],
 )
 
 http_archive(
     name = "com_github_jupp0r_prometheus_cpp",
-    sha256 = "4b4241542a0ee807a2e351600c342b915ea02fac5ccb2235d4794812f46b50b6",
-    strip_prefix = "prometheus-cpp-722fbcf18695976b23f81d1e852b8fdb4690cfd9",
-    urls = ["https://github.com/jupp0r/prometheus-cpp/archive/722fbcf18695976b23f81d1e852b8fdb4690cfd9.zip"],
+    sha256 = "159d013c81b564dfc628f23e6b4560c8ba1992b555e4258194436d8585500b50",
+    strip_prefix = "prometheus-cpp-4b03769662cfdbfa2f31c21bb162cf495aa2a607",
+    urls = ["https://github.com/jupp0r/prometheus-cpp/archive/4b03769662cfdbfa2f31c21bb162cf495aa2a607.zip"],
 )
 
 load("@com_github_jupp0r_prometheus_cpp//bazel:repositories.bzl", "prometheus_cpp_repositories")
@@ -69,7 +70,7 @@ add_wix_deps()
 http_archive(
     name = "org_kernel_util_linux",  # for libuuid
     build_file = "@//external:util-linux-BUILD.bazel",
-    sha256 = "faa8b46d080faa6f32c57da81eda871e38e1e27ba4e9b61cb2589334671aba50",
-    strip_prefix = "util-linux-2.37",
-    urls = ["https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.37/util-linux-2.37.tar.gz"],
+    sha256 = "",
+    strip_prefix = "util-linux-2.39",
+    urls = ["https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz"],
 )

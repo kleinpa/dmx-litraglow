@@ -19,6 +19,7 @@ cc_library(
         "include/etcpal/cpp/thread.h",
         "include/etcpal/cpp/timer.h",
         "include/etcpal/cpp/uuid.h",
+        "include/etcpal/cpp/hash.h",
     ],
     strip_include_prefix = "include",
 )
@@ -26,7 +27,7 @@ alias(
     name = "etcpal",
     actual =
         select({
-            "@bazel_tools//src/conditions:windows": ":etcpal_windows",
+            "@platforms//os:windows": ":etcpal_windows",
             "//conditions:default": "etcpal_linux",
         }),
     visibility = ["//visibility:public"],
@@ -87,6 +88,7 @@ cc_library(
         "src/etcpal/private/opts.h",
         "src/etcpal/private/socket.h",
         "src/etcpal/private/timer.h",
+        "src/etcpal/private/common.h",
         "src/etcpal/queue.c",
         "src/etcpal/rbtree.c",
         "src/etcpal/thirdparty/md5.c",

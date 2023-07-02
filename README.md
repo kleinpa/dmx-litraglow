@@ -1,4 +1,6 @@
-# Similar Projects
+# dmx-litraglow
+
+## Similar Projects
 
 Khary Mendez appears to have been the first to document the HID commands required to control the Litra Glow.
 
