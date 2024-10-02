@@ -40,9 +40,9 @@ http_archive(
 http_archive(
     name = "com_github_etclabs_sacn",
     build_file = "@//external:sacn-BUILD.bazel",
-    sha256 = "5493088f402c3dbb85bd166df372e201f514f5afdd8da7b10b660b7a96cdf358",
-    strip_prefix = "sACN-4508d4b0ef70d31b438316be02cfb016401e848b",
-    urls = ["https://github.com/ETCLabs/sACN/archive/4508d4b0ef70d31b438316be02cfb016401e848b.zip"],
+    sha256 = "4577129abdea3437b03ebbb4e34f4c5cfeb7085d6c9830bb9d9b1786047c6ce3",
+    strip_prefix = "sACN-4d601e1952f0d66b379afce996a725d9f9371d35",
+    urls = ["https://github.com/ETCLabs/sACN/archive/4d601e1952f0d66b379afce996a725d9f9371d35.zip"],
 )
 
 http_archive(
