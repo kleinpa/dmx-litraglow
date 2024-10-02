@@ -32,9 +32,9 @@ http_archive(
 http_archive(
     name = "com_github_etclabs_etcpal",
     build_file = "@//external:etcpal-BUILD.bazel",
-    sha256 = "066b3b5ea47a3970ca189457235becc8a178fa02b78056187fb7d0c73da35c1f",
-    strip_prefix = "EtcPal-0aa91907b93f7969e712a1af126e7af84cba3707",
-    urls = ["https://github.com/ETCLabs/etcpal/archive/0aa91907b93f7969e712a1af126e7af84cba3707.zip"],
+    sha256 = "8bedb83b07d910396eb4f2b7a225cd4f7bfb50a32ae98348f6c95d3dad378b57",
+    strip_prefix = "EtcPal-b0bd0b0d0294e98ef135b501d18cf82b4f8fa6f4",
+    urls = ["https://github.com/ETCLabs/etcpal/archive/b0bd0b0d0294e98ef135b501d18cf82b4f8fa6f4.zip"],
 )
 
 http_archive(
