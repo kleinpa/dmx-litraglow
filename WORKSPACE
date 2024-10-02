@@ -47,9 +47,9 @@ http_archive(
 
 http_archive(
     name = "com_github_jupp0r_prometheus_cpp",
-    sha256 = "159d013c81b564dfc628f23e6b4560c8ba1992b555e4258194436d8585500b50",
-    strip_prefix = "prometheus-cpp-4b03769662cfdbfa2f31c21bb162cf495aa2a607",
-    urls = ["https://github.com/jupp0r/prometheus-cpp/archive/4b03769662cfdbfa2f31c21bb162cf495aa2a607.zip"],
+    sha256 = "b8494562f988af35ec12561b6eb352d0cbed7e3f7d68a69eda786c6610afc46e",
+    strip_prefix = "prometheus-cpp-6492e820cdff7e7345d46d82b43735aaea542098",
+    urls = ["https://github.com/jupp0r/prometheus-cpp/archive/6492e820cdff7e7345d46d82b43735aaea542098.zip"],
 )
 
 load("@com_github_jupp0r_prometheus_cpp//bazel:repositories.bzl", "prometheus_cpp_repositories")
