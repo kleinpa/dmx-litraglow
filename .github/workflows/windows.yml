@@ -4,6 +4,6 @@ jobs:
   bazel-test:
     runs-on: windows-2019
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build and test all targets
         run: bazelisk build //...
