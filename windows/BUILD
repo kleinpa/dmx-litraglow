@@ -31,8 +31,8 @@ cc_binary(
     ],
     deps = [
         "//:controller",
-        "@com_github_jupp0r_prometheus_cpp//pull",
-        "@com_google_absl//absl/flags:flag",
-        "@com_google_absl//absl/flags:parse",
+        "@abseil-cpp//absl/flags:flag",
+        "@abseil-cpp//absl/flags:parse",
+        "@prometheus-cpp//pull",
     ],
 )

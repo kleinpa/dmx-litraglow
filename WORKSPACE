@@ -1,32 +1,11 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-# http_archive(
-#     name = "bazel_skylib",
-#     sha256 = "f7be3474d42aae265405a592bb7da8e171919d74c16f082a5457840f06054728",
-#     urls = [
-#         "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.2.1/bazel-skylib-1.2.1.tar.gz",
-#         "https://github.com/bazelbuild/bazel-skylib/releases/download/1.2.1/bazel-skylib-1.2.1.tar.gz",
-#     ],
-# )
-http_archive(
-    name = "bazel_skylib",
-    sha256 = "bc283cdfcd526a52c3201279cda4bc298652efa898b10b4db0837dc51652756f",
-    urls = ["https://github.com/bazelbuild/bazel-skylib/releases/download/1.7.1/bazel-skylib-1.7.1.tar.gz"],
-)
-
 http_archive(
     name = "com_github_libusb_hidapi",
     build_file = "@//external:hidapi.BUILD",
     sha256 = "68217a595ffc517e7b88e7bfedddaef0558ceb8a8937327ecc3de2016cdf8cfc",
     strip_prefix = "hidapi-hidapi-0.14.0",
     urls = ["https://github.com/libusb/hidapi/archive/refs/tags/hidapi-0.14.0.zip"],
-)
-
-http_archive(
-    name = "com_google_absl",
-    sha256 = "6f03495ec2fdc582b2e858e04a268caf2415c12633f7634a3b99c1698950f05f",
-    strip_prefix = "abseil-cpp-03b8d6ea3dc6a0b8c6bcf42503c2053754dab2e4",
-    urls = ["https://github.com/abseil/abseil-cpp/archive/03b8d6ea3dc6a0b8c6bcf42503c2053754dab2e4.zip"],
 )
 
 http_archive(
@@ -46,17 +25,6 @@ http_archive(
 )
 
 http_archive(
-    name = "com_github_jupp0r_prometheus_cpp",
-    sha256 = "b8494562f988af35ec12561b6eb352d0cbed7e3f7d68a69eda786c6610afc46e",
-    strip_prefix = "prometheus-cpp-6492e820cdff7e7345d46d82b43735aaea542098",
-    urls = ["https://github.com/jupp0r/prometheus-cpp/archive/6492e820cdff7e7345d46d82b43735aaea542098.zip"],
-)
-
-load("@com_github_jupp0r_prometheus_cpp//bazel:repositories.bzl", "prometheus_cpp_repositories")
-
-prometheus_cpp_repositories()
-
-http_archive(
     name = "rules_wix",
     sha256 = "33a8487079f494125cc5ae8e6d4df068870ad680dd8cf1b225492c9954761f9b",
     strip_prefix = "rules_wix-07d3331f38ff3152384cc8c6c5e844e9d2dd50fe",
@@ -70,7 +38,7 @@ add_wix_deps()
 http_archive(
     name = "org_kernel_util_linux",  # for libuuid
     build_file = "@//external:util-linux-BUILD.bazel",
-    sha256 = "",
+    integrity = "sha256-sfWXrRcqLuF7Cnrkvnq34bGm+TlN29PY7JCuTtczNXk=",
     strip_prefix = "util-linux-2.39",
     urls = ["https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz"],
 )

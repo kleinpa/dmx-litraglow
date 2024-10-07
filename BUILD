@@ -1,3 +1,4 @@
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
 
 cc_binary(
@@ -8,10 +9,10 @@ cc_binary(
         "device.h",
     ],
     deps = [
-        "@com_github_jupp0r_prometheus_cpp//pull",
+        "@abseil-cpp//absl/flags:flag",
+        "@abseil-cpp//absl/flags:parse",
         "@com_github_libusb_hidapi//:hidapi",
-        "@com_google_absl//absl/flags:flag",
-        "@com_google_absl//absl/flags:parse",
+        "@prometheus-cpp//pull",
     ],
 )
 
@@ -30,8 +31,8 @@ cc_library(
     visibility = ["//visibility:public"],
     deps = [
         "@com_github_etclabs_sacn//:sacn_cpp",
-        "@com_github_jupp0r_prometheus_cpp//pull",
         "@com_github_libusb_hidapi//:hidapi",
+        "@prometheus-cpp//pull",
     ],
 )
 
@@ -43,7 +44,14 @@ cc_binary(
     visibility = ["//visibility:public"],
     deps = [
         ":controller",
-        "@com_google_absl//absl/flags:flag",
-        "@com_google_absl//absl/flags:parse",
+        "@abseil-cpp//absl/flags:flag",
+        "@abseil-cpp//absl/flags:parse",
+    ],
+)
+
+build_test(
+    name = "main_build_test",
+    targets = [
+        ":main",
     ],
 )
