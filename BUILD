@@ -1,5 +1,6 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
 
 cc_binary(
     name = "basic",
@@ -11,7 +12,7 @@ cc_binary(
     deps = [
         "@abseil-cpp//absl/flags:flag",
         "@abseil-cpp//absl/flags:parse",
-        "@com_github_libusb_hidapi//:hidapi",
+        "@hidapi",
         "@prometheus-cpp//pull",
     ],
 )
@@ -30,14 +31,14 @@ cc_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "@com_github_etclabs_sacn//:sacn_cpp",
-        "@com_github_libusb_hidapi//:hidapi",
+        "@hidapi",
         "@prometheus-cpp//pull",
+        "@sacn//:sacn_cpp",
     ],
 )
 
 cc_binary(
-    name = "main",
+    name = "dmx-litraglow",
     srcs = [
         "main.cc",
     ],
@@ -50,8 +51,9 @@ cc_binary(
 )
 
 build_test(
-    name = "main_build_test",
+    name = "build_test",
     targets = [
-        ":main",
+        ":basic",
+        ":dmx-litraglow",
     ],
 )

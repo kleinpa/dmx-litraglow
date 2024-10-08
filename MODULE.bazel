@@ -1,6 +1,47 @@
-bazel_dep(name = "nlohmann_json", version = "3.11.3")
+module(name = "dmx-litraglow")
 
-bazel_dep(name = "abseil-cpp", version = "20240722.0")
-bazel_dep(name = "rules_cc", version = "0.0.11")
+bazel_dep(name = "abseil-cpp", version = "20230802.0")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
+bazel_dep(name = "googletest", version = "1.14.0", repo_name = "com_google_googletest")
+bazel_dep(name = "nlohmann_json", version = "3.11.2")
+bazel_dep(name = "platforms", version = "0.0.10")
 bazel_dep(name = "prometheus-cpp", version = "1.2.4")
+bazel_dep(name = "rules_cc", version = "0.0.9")
+bazel_dep(name = "rules_pkg", version = "0.9.1")
+
+bazel_dep(name = "mjbots_rules_wix")
+git_override(
+    module_name = "mjbots_rules_wix",
+    remote = "https://github.com/kleinpa/rules_wix",
+    commit = "0bc2de80250601fb916e837ef11c4f1198c78751",
+)
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+http_archive(
+    name = "hidapi",
+    build_file = "@dmx-litraglow//external:hidapi.BUILD",
+    sha256 = "68217a595ffc517e7b88e7bfedddaef0558ceb8a8937327ecc3de2016cdf8cfc",
+    strip_prefix = "hidapi-hidapi-0.14.0",
+    urls = ["https://github.com/libusb/hidapi/archive/refs/tags/hidapi-0.14.0.zip"],
+)
+http_archive(
+    name = "etcpal",
+    build_file = "@dmx-litraglow//external:etcpal-BUILD.bazel",
+    sha256 = "066b3b5ea47a3970ca189457235becc8a178fa02b78056187fb7d0c73da35c1f",
+    strip_prefix = "EtcPal-0aa91907b93f7969e712a1af126e7af84cba3707",
+    urls = ["https://github.com/ETCLabs/etcpal/archive/0aa91907b93f7969e712a1af126e7af84cba3707.zip"],
+)
+http_archive(
+    name = "sacn",
+    build_file = "@dmx-litraglow//external:sacn-BUILD.bazel",
+    sha256 = "5493088f402c3dbb85bd166df372e201f514f5afdd8da7b10b660b7a96cdf358",
+    strip_prefix = "sACN-4508d4b0ef70d31b438316be02cfb016401e848b",
+    urls = ["https://github.com/ETCLabs/sACN/archive/4508d4b0ef70d31b438316be02cfb016401e848b.zip"],
+)
+http_archive(
+    name = "util_linux",  # for libuuid
+    build_file = "@dmx-litraglow//external:util-linux-BUILD.bazel",
+    sha256 = "",
+    strip_prefix = "util-linux-2.39",
+    urls = ["https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz"],
+)

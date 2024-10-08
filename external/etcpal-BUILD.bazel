@@ -112,7 +112,7 @@ cc_library(
         "src/os/linux/etcpal/os_timer.c",
         "src/os/linux/etcpal/os_uuid.c",
     ],
-    deps = ["@org_kernel_util_linux//:uuid"],
+    deps = ["@util_linux//:uuid"],
     linkopts = ["-pthread"],
     includes = ["src", "src/os/linux", "include/os/linux"],
     visibility = ["//visibility:public"],
@@ -212,5 +212,5 @@ cc_binary(
     srcs = [
         "examples/timer/timer_example.c",
     ],
-    deps = ["@com_github_etclabs_etcpal//:etcpal"],
+    deps = ["@etcpal//:etcpal"],
 )

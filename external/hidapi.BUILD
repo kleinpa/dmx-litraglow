@@ -24,7 +24,10 @@ cc_library(
     ],
     hdrs = ["hidapi/hidapi.h"],
     copts = ["-Dhidapi_winapi_EXPORTS"],
-    includes = ["hidapi"],
+    includes = [
+        "hidapi",
+        "windows",
+    ],
     linkopts = ["setupapi.lib"],
 )
 

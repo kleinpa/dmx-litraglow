@@ -1,5 +1,5 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary")
-load("@rules_wix//:rules.bzl", "pkg_msi")
+load("@mjbots_rules_wix//:defs.bzl", "pkg_msi")
 
 alias(
     name = "windows",

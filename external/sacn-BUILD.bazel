@@ -9,7 +9,7 @@ cc_library(
         "include/sacn/cpp/source_detector.h",
         "include/sacn/cpp/source.h",
     ],
-    deps = ["@com_github_etclabs_etcpal//:etcpal_cpp", ":sacn"],
+    deps = ["@etcpal//:etcpal_cpp", ":sacn"],
 )
 cc_library(
     name = "sacn",
@@ -110,7 +110,7 @@ cc_library(
         "src/sacn/util.c",
     ],
     includes = ["src"],
-    deps = ["@com_github_etclabs_etcpal//:etcpal"],
+    deps = ["@etcpal//:etcpal"],
 )
 
 cc_binary(
@@ -119,5 +119,5 @@ cc_binary(
         "examples/receiver/src/linux/keyboard_interrupt.c",
         "examples/receiver/src/main.c",
     ],
-    deps = ["@com_github_etclabs_sacn//:sacn"],
+    deps = ["@sacn//:sacn"],
 )
