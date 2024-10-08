@@ -45,3 +45,10 @@ http_archive(
     strip_prefix = "util-linux-2.39",
     urls = ["https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz"],
 )
+http_archive(
+    name = "openrgb",
+    build_file = "@//external:openrgb-BUILD.bazel",
+    sha256 = "f3b4e024c33f27f12f09fc8596808181d377d892f6962bd7c1eca749dffca8b9",
+    strip_prefix = "OpenRGB-d5b31ff6818f959aa6da8f17caa9e1dcfa65dcf1",
+    urls = ["https://gitlab.com/CalcProgrammer1/OpenRGB/-/archive/d5b31ff6818f959aa6da8f17caa9e1dcfa65dcf1/OpenRGB-d5b31ff6818f959aa6da8f17caa9e1dcfa65dcf1.tar.gz"],
+)

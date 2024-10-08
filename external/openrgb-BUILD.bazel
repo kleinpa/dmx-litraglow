@@ -1,0 +1,172 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+cc_library(
+    name = "sdk",
+    srcs = [
+        "NetworkClient.cpp",
+        "RGBController/RGBController_Network.cpp",
+    ],
+    hdrs = [
+        "NetworkClient.h",
+        "NetworkProtocol.h",
+        "RGBController/RGBController_Network.h",
+    ],
+    deps = [
+        ":net_port",
+        ":rgb_controller",
+    ],
+    includes = ["net_port"],
+    visibility = ["//visibility:public"],
+    defines = ["WIN32"],
+    linkopts = ["ws2_32.lib"],
+)
+
+cc_library(
+    name = "rgb_controller",
+    srcs = [
+        "RGBController/RGBController.cpp",
+        "RGBController/RGBControllerKeyNames.cpp",
+        "RGBController/RGBController_Dummy.cpp",
+    ],
+    hdrs = [
+        "RGBController/RGBController.h",
+        "RGBController/RGBControllerKeyNames.h",
+        "RGBController/RGBController_Dummy.h",
+    ],
+    deps = [],
+    includes = ["RGBController", "net_port"],
+    visibility = ["//visibility:public"],
+    defines = ["WIN32"],
+    linkopts = ["ws2_32.lib"],
+)
+
+cc_library(
+    name = "net_port",
+    srcs = ["net_port/net_port.cpp"],
+    hdrs = ["net_port/net_port.h"],
+    includes = ["net_port"],
+    defines = ["WIN32"],
+)
+
+# cc_library(
+#     name = "client",
+#     visibility = ["//visibility:public"],
+#     hdrs = [
+#     ],
+#     srcs = [
+#         "Colors.h",
+#         "Detector.h",
+#         "DeviceDetector.h",
+#         "filesystem.h",
+#         "LogManager.cpp",
+#         "LogManager.h",
+#         "NetworkClient.cpp",
+#         "NetworkClient.h",
+#         #"NetworkProtocol.cpp",
+#         "NetworkProtocol.h",
+#         "OpenRGBPluginInterface.h",
+#         "PluginManager.cpp",
+#         "PluginManager.h",
+#         "ProfileManager.cpp",
+#         "ProfileManager.h",
+#         "SettingsManager.cpp",
+#         "SettingsManager.h",
+#         "StringUtils.cpp",
+#         "StringUtils.h",
+#     ],
+#     deps = [
+#         ":json",
+#         ":net_port",
+#         ":hidapi_wrapper",
+#     ],
+#     #includes = ["openrgb"],
+#     #linkopts = [
+#     #    "-lpthread",
+#     #    "-ludev",
+#     #],
+# )
+
+# cc_library(
+#     name = "nvfc",
+#     srcs = [
+#         "dependencies/NVFC/nvapi.cpp",
+#     ],
+#     hdrs = [
+#         "dependencies/NVFC/nvapi.h",
+#     ],
+#     includes = ["dependencies/NVFC"],
+# )
+
+cc_library(
+    name = "json",
+    hdrs = [
+        "dependencies/json/json.hpp",
+    ],
+    includes = ["dependencies/json"],
+)
+
+cc_library(
+    name = "hidapi_wrapper",
+    hdrs = ["hidapi_wrapper/hidapi_wrapper.h"],
+    deps = ["@hidapi//:hidapi"],
+    includes = ["hidapi_wrapper"],
+    strip_include_prefix = "hidapi_wrapper",
+)
+
+# cc_library(
+#     name = "i2c_smbus",
+#     hdrs = [
+#         "i2c_smbus/i2c_smbus_amdadl.h",
+#         "i2c_smbus/i2c_smbus_i801.h",
+#         #"i2c_smbus/i2c_smbus_linux.h",
+#         "i2c_smbus/i2c_smbus_nct6775.h",
+#         "i2c_smbus/i2c_smbus_nvapi.h",
+#         "i2c_smbus/i2c_smbus_piix4.h",
+#         "i2c_smbus/i2c_smbus.h",
+#     ],
+#     srcs = [
+#         "i2c_smbus/i2c_smbus_amdadl.cpp",
+#         "i2c_smbus/i2c_smbus_i801.cpp",
+#         #"i2c_smbus/i2c_smbus_linux.cpp",
+#         "i2c_smbus/i2c_smbus_nct6775.cpp",
+#         "i2c_smbus/i2c_smbus_nvapi.cpp",
+#         "i2c_smbus/i2c_smbus_piix4.cpp",
+#         "i2c_smbus/i2c_smbus.cpp",
+#     ],
+#     deps = [":adl_sdk", ":nvfc", ":hidapi_wrapper"],
+#     includes = ["i2c_smbus"],
+#     defines = ["WIN32"],
+# )
+
+# cc_library(
+#     name = "adl_sdk",
+#     hdrs = [
+#         "dependencies/display-library/include/adl_sdk.h",
+#         "dependencies/display-library/include/adl_defines.h",
+#         "dependencies/display-library/include/adl_structures.h",
+#     ],
+#     strip_include_prefix = "dependencies/display-library/include/",
+# )
+
+# # cc_binary(
+# #     name = "client",
+# #     srcs = ["main.cpp"],
+# #     deps = [":base"],
+# #     visibility = ["//visibility:public"],
+# # )
+
+cc_library(
+    name = "logitech_controller",
+    srcs = glob(["Controllers/LogitechController/*.cpp", "Controllers/LogitechController/*.h"]),
+    hdrs = [
+        #"RGBController/RGBController.h",
+    ],
+    includes = ["Controllers/LogitechController", "i2c_smbus"],
+    visibility = ["//visibility:public"],
+    deps = [
+        #"//:base",
+        ":rgb_controller",
+        ":hidapi_wrapper",
+        ":json",
+    ],
+)
