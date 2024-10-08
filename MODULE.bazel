@@ -7,7 +7,7 @@ bazel_dep(name = "nlohmann_json", version = "3.11.3")
 bazel_dep(name = "platforms", version = "0.0.10")
 bazel_dep(name = "prometheus-cpp", version = "1.2.4")
 bazel_dep(name = "rules_cc", version = "0.0.12")
-bazel_dep(name = "rules_pkg", version = "0.9.1")
+bazel_dep(name = "rules_pkg", version = "1.0.1")
 
 bazel_dep(name = "mjbots_rules_wix")
 git_override(
