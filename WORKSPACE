@@ -26,9 +26,9 @@ http_archive(
 
 http_archive(
     name = "rules_wix",
-    sha256 = "33a8487079f494125cc5ae8e6d4df068870ad680dd8cf1b225492c9954761f9b",
-    strip_prefix = "rules_wix-07d3331f38ff3152384cc8c6c5e844e9d2dd50fe",
-    url = "https://github.com/kleinpa/rules_wix/archive/07d3331f38ff3152384cc8c6c5e844e9d2dd50fe.zip",
+    sha256 = "b24fe93c9f379896825d13725448ab3a575b7bf5b8efea6fe242ffb37d182107",
+    strip_prefix = "rules_wix-b0586e6ae2f7c9ca67bbf477d824c48855cc1930",
+    url = "https://github.com/kleinpa/rules_wix/archive/b0586e6ae2f7c9ca67bbf477d824c48855cc1930.zip",
 )
 
 load("@rules_wix//:deps.bzl", "add_wix_deps")
