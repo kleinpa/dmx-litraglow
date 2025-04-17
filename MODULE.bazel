@@ -41,7 +41,7 @@ http_archive(
 http_archive(
     name = "util_linux",  # for libuuid
     build_file = "@dmx-litraglow//external:util-linux-BUILD.bazel",
-    sha256 = "",
+    integrity = "sha256-sfWXrRcqLuF7Cnrkvnq34bGm+TlN29PY7JCuTtczNXk=",
     strip_prefix = "util-linux-2.39",
     urls = ["https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz"],
 )
