@@ -4,6 +4,6 @@ jobs:
   bazel-test:
     runs-on: windows-2025
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build and test all targets
         run: bazelisk test //...
