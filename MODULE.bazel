@@ -19,28 +19,28 @@ git_override(
 http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 http_archive(
     name = "hidapi",
-    build_file = "@dmx-litraglow//external:hidapi.BUILD",
-    sha256 = "68217a595ffc517e7b88e7bfedddaef0558ceb8a8937327ecc3de2016cdf8cfc",
-    strip_prefix = "hidapi-hidapi-0.14.0",
-    urls = ["https://github.com/libusb/hidapi/archive/refs/tags/hidapi-0.14.0.zip"],
+    build_file = "@//thirdparty:hidapi.BUILD",
+    sha256 = "",
+    strip_prefix = "hidapi-hidapi-0.15.0",
+    urls = ["https://github.com/libusb/hidapi/archive/refs/tags/hidapi-0.15.0.zip"],
 )
 http_archive(
     name = "etcpal",
-    build_file = "@dmx-litraglow//external:etcpal-BUILD.bazel",
+    build_file = "@//thirdparty:etcpal-BUILD.bazel",
     sha256 = "066b3b5ea47a3970ca189457235becc8a178fa02b78056187fb7d0c73da35c1f",
     strip_prefix = "EtcPal-0aa91907b93f7969e712a1af126e7af84cba3707",
     urls = ["https://github.com/ETCLabs/etcpal/archive/0aa91907b93f7969e712a1af126e7af84cba3707.zip"],
 )
 http_archive(
     name = "sacn",
-    build_file = "@dmx-litraglow//external:sacn-BUILD.bazel",
-    sha256 = "5493088f402c3dbb85bd166df372e201f514f5afdd8da7b10b660b7a96cdf358",
-    strip_prefix = "sACN-4508d4b0ef70d31b438316be02cfb016401e848b",
-    urls = ["https://github.com/ETCLabs/sACN/archive/4508d4b0ef70d31b438316be02cfb016401e848b.zip"],
+    build_file = "@//thirdparty:sacn-BUILD.bazel",
+    sha256 = "",
+    strip_prefix = "sACN-3.0.0",
+    urls = ["https://github.com/ETCLabs/sACN/archive/refs/tags/v3.0.0.zip"],
 )
 http_archive(
     name = "util_linux",  # for libuuid
-    build_file = "@dmx-litraglow//external:util-linux-BUILD.bazel",
+    build_file = "@//thirdparty:util-linux-BUILD.bazel",
     integrity = "sha256-sfWXrRcqLuF7Cnrkvnq34bGm+TlN29PY7JCuTtczNXk=",
     strip_prefix = "util-linux-2.39",
     urls = ["https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz"],
